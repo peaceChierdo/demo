@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+	#load-more{
+	display: block;
+	margin: 10px auto;
+    text-align: center;
+	cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    width: 80px;
+    border: 1px solid #E27272;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #E27272;
+    margin-top: 20px;
+    }
+    #load-more:hover{
+    	background-color: #E96D5B;
+    	color: #fff;
+    }
+    #ct {
+
+    }
+    #ct>li {
+    	list-style: none;
+    	padding: 10px;
+    	border: 1px solid #aaa ;
+    	border-radius: 5px;
+    	text-align: center;
+    	width: 50%;
+    	margin: 10px auto;
+    }
+
+
+	}
+</style>
+</head>
+
+<body>
+<ul id="ct"></ul>
+<a id="load-more" href='javascript: void(0)'>加载更多</a> <!-- 取消跳转到顶部法一 -->
+
+  <script>
+    var nextIndex=1,
+    	newList = document.querySelector('#ct'),
+    	loadMore = document.querySelector('#load-more'),
+    	flag = false
+    loadMore.addEventListener('click', function(){
+    	//取消跳转到顶部法二： e.preventDefault()
+    	if (flag){
+    		return
+    	}
+    	var xhr = new XMLHttpRequest()
+    	xhr.onreadystatechange = function(){
+    		if(xhr.readyState === 4){
+    			if(xhr.status === 200 || xhr.status === 304){
+    				flag = false
+    				var frag = document.createDocumentFragment()
+    				for (var i=0; i< JSON.parse(xhr.responseText).length; i++){
+    					var newLi = document.createElement('li')
+    					newLi.innerText = JSON.parse(xhr.responseText)[i]
+    					frag.appendChild(newLi)
+    				}
+    				newList.appendChild(frag)
+    				nextIndex += 5
+    			}else{
+    				console.log('error!')
+    			}
+
+    		}
+    	}
+
+    	flag = true
+    	xhr.open('GET', '/loadMore?index=' + nextIndex + "&length=5", true)
+     	xhr.send()
+
+    })
+
+
+
+  </script>
+  
+</body>
+</html>
