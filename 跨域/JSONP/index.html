@@ -1,47 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style type=text/css>
-    </style>
-</head>
-<body>
-<div class="ct">
-    <ul class="news">
-        <li>news1</li>
-        <li>news2</li>
-        <li>news3</li>
-    </ul>
-    <button class="change">change</button>
-</div>
-
-<script type=text/javascript>
-    function $(selector) {
-        return document.querySelector(selector)
-    }
-    var change = $(".change"),
-        oUl = $(".news")
-    //服务器返回一个执行函数
-    function appendHtml(news) {
-        var frag = ""
-        for (var i = 0; i < news.length; i++) {
-            frag += "<li>" + news[i] + "</li>"
-        }
-        console.log(frag)
-        oUl.innerHTML = frag
-    }
-    //引用script
-    change.addEventListener("click", function () {
-        var script = document.createElement("script")
-        script.src = "http://localhost:8080/getNews?callback=appendHtml"
-        document.head.appendChild(script)
-        document.head.removeChild(script)
-    })
-</script>
-</body>
-</html>  -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,12 +16,14 @@
       function $(selector){
         return document.querySelector(selector)
       }
+
       $('.change').addEventListener('click', function(){
         var script = document.createElement('script')
         script.src = 'http://localhost:8080/getNews?callback=appendHtml'
         document.head.appendChild(script)
         document.head.removeChild(script)
       })
+      
       function appendHtml(news){
         var html = ''
         for(var i=0; i<news.length; i++){
