@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSONP</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <style type="text/css">
+	*{
+	text-decoration: none;
+	}
+	ul{
+	list-style: none;
+	}
+	li{
+	border:1px solid #999;
+	padding: 5px;
+	margin-top:5px;
+	}
+	#btn{
+	border:1px solid #E27272;
+	border-radius:5px;
+	padding: 5px 20px;
+	color: #E27272;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+	font-size: 18px;
+	cursor: pointer;
+	}
+  </style>
+</head>
+
+<body>
+<div class="loadmore">
+  <ul class="aul">
+    <a href="#"><li>1</li></a>
+    <a href="#"><li>2</li></a>
+  </ul>
+</div>
+  <button id="btn">loadMore</button>
+
+<script >
+var len = 5;
+var idx = 2;
+$('#btn').on('click',function(){
+	$.ajax({
+	url: 'http://localhost:8080/getMore?',
+	method: 'get',
+	datatype: 'JSON',
+	data:{
+		length: len,
+		index: idx //每一次都变化的，别定死了
+	}
+}).done(function(data){
+	idx += len;
+	appendHtml(data)
+}).fail(function(){
+	alert('fail')
+})
+
+function appendHtml(arr){
+	var html = ''
+	for(var i=0; i<len; i++){
+		html += '<li><a href="#">' + arr[i] + '</a></li>'
+	}
+	$('.aul').append(html)
+}
+})
+</script>
+
+</body>
+
+</html>
