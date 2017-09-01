@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自动轮播</title>
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+  <style type="text/css">
+  body{
+    background-color: #ddd;
+  }
+    *{
+      margin:0;
+      padding:0;
+      list-style: none;
+      text-decoration: none;
+    }
+    .clearfix:after{
+      display: block;
+      content:'';
+      clear: both;
+    }
+    .carousel{
+      position: relative;
+      width: 400px;
+      height:240px;
+      overflow: hidden;
+      margin: 100px auto;
+    }
+    .img-ct{
+      position: absolute;
+      /*width: 1600px;*/
+    }
+    .img-ct>li {
+      float: left;
+         
+    }
+    .img-ct img{
+      width: 400px;
+      height: 240px;
+    }
+    .btn {
+      position: absolute;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      z-index: 1;
+      top: 50%;
+      margin-top: -15px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+      .btn:hover{
+        opacity: 1;
+      }
+    .nextbtn{
+      right: 10px;
+    }
+    .prebtn{
+      left: 10px;
+    }
+      .bullet {
+        position: absolute;
+        bottom:10px;
+        z-index: 1;
+        text-align: center;
+        width: 100%;        
+      }
+      .bullet li{
+        display: inline-block;
+        width: 28px;
+        height: 6px;
+        border-radius: 3px;
+        border: 1px solid #fff;
+        cursor: pointer;
+        margin: 0 3px;
+        
+      }
+      .bullet .active {
+        background-color: #fff;
+      }
+
+  </style>
+</head>
+
+<body>
+ <div class="carousel ">
+   <ul class="img-ct clearfix">
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+   </ul>
+   <a class="prebtn btn" href="#"><</a>
+   <a class="nextbtn btn" href="#">></a>  
+     <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+     </ul>    
+ </div>
+ <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+ <script type="text/javascript"> 
+  var $imgct = $('.img-ct')     //仔细写！
+  var $imgs = $('.img-ct >li')
+  var $prebtn = $('.prebtn')
+  var $nextbtn = $('.nextbtn')
+  var $bullets = $('.bullet >li')
+  var $carousel = $('.carousel')
+  var pageIndex = 0,
+      flag = 0
+  
+  var imgCount = $imgs.length
+  var imgWidth = $imgs.width()
+  
+  $imgct.append($imgs.first().clone())  //首尾添加克隆图片
+  $imgct.prepend($imgs.last().clone())
+  $imgct.width(imgWidth*(imgCount+2))
+  $imgct.css({left: -imgWidth})
+
+  //前后按钮
+  $nextbtn.click(function(){
+    playNext(1)
+  })
+  $prebtn.click(function(){
+    playPre(1)
+  })
+  
+  //css切换效果
+
+  // function playNext(len){
+  //     $imgct.animate({
+  //     left: '-='+imgWidth*len,
+  //   },function(){
+  //     pageIndex += len
+  //     if(pageIndex === imgCount) {
+  //       pageIndex = 0
+  //       $imgct.css({left: -imgWidth})
+  //     }
+  //     setBullet()
+  //   })
+  // }
+
+  // function playPre(len){
+  //   $imgct.animate({
+  //     left: '+='+imgWidth*len,
+  //   },function(){
+  //      pageIndex -= len
+  //      if(pageIndex <0){
+  //       pageIndex = imgCount-1
+  //       $imgct.css({left: -imgCount*imgWidth})
+  //      }
+  //      setBullet()
+  //   })
+  // }
+
+ // 闪现渐变= =
+  function playNext(len){
+  $imgct.animate({opacity:0},800).animate({left: '-='+imgWidth*len},0,function(){ 
+    pageIndex += len
+  if(pageIndex === imgCount) {
+     pageIndex = 0
+     $imgct.css({left: -imgWidth})
+   }
+   setBullet()
+  }).animate({opacity:1},1000)
+  //setBullet()
+}
+  function playPre(len){
+  $imgct.animate({opacity:0.1},500).animate({left: '+='+imgWidth*len, },0,function(){
+    pageIndex -= len
+    if(pageIndex <0){
+    pageIndex = imgCount-1
+    $imgct.css({left: -imgCount*imgWidth})
+    }
+    setBullet()
+  }).animate({opacity:1},1000)
+  setBullet()
+}
+
+//fade渐变 (不太流畅)       
+// ？playNext()中的fadeIn()看不出效果，只有最后一张切换到第一张有效果
+//       playPre()显示正常，但第一张切换到最后一张没有fadeIn()效果
+
+    // function playNext(len){
+    //   if(flag){ return; }
+    //   flag = 1
+    //   $imgs.eq(pageIndex).fadeOut(1000)
+    //   pageIndex +=len      
+    //   if(pageIndex === imgCount){
+    //   pageIndex = 0
+    //   $imgs.eq(pageIndex).fadeIn(1000)
+    //   }else{
+    //     $imgs.eq(pageIndex).fadeIn(1000)
+    //   }   
+    //   setBullet()
+    //   flag = 0
+    // }
+
+
+    // function playPre(len){
+    //   if(flag){ return; }
+    //   flag = 1
+    //   $imgs.eq(pageIndex).fadeOut(1000)
+    //   pageIndex -= len     
+    //   if(pageIndex < 0){
+    //     pageIndex = imgCount-1
+    //     $imgs.eq(pageIndex).fadeIn(1000)
+    //   }else{
+    //      $imgs.eq(pageIndex).fadeIn(1000)
+    //   }
+    //   setBullet()
+    //   flag = 0
+    // }
+
+
+  //设置bullet
+  function setBullet(){
+    $bullets.removeClass('active').eq(pageIndex).addClass('active')
+  }
+
+
+  $bullets.click(function(){
+    var index = $(this).index()
+    if(index > pageIndex){
+      playNext(index - pageIndex)
+    }else if(index < pageIndex){
+      playPre(pageIndex-index)
+    }
+  })
+  
+//  自动播放
+  var autoplay 
+  function setIntv(){
+    autoplay = setInterval(function(){
+      playNext(1)
+    },3000)
+  } 
+  $carousel.mouseout(function(){
+    setIntv()
+  }).mouseover(function(){
+    clearInterval(autoplay)
+  })
+
+  setIntv()
+
+  
+  
+  
+</script>
+</body>
+</html>
