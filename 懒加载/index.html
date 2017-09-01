@@ -48,42 +48,40 @@
 </ul>
 
 <script>
-//用户第一次打开页面，还未滚动窗口的时候需要执行一次
-lazyRender()
-var clock
-$(window).on('scroll',function(){
-  if(clock){
-    clearTimeout(clock)
-  }
-  //用户鼠标滚轮滚动一次，有多次事件响应。下面的 setTimeout 主要是为性能考虑，只在最后一次事件响应的时候执行
-  clock = setTimeout(function(){
-    console.log('hello')
-    lazyRender()
-  },300)
-  
-})
+  lazyRender()
 
-function lazyRender() {
-  $('.container img').each(function(){
-    if( checkShow($(this)) && !isLoaded($(this)) ){
-      loadImg($(this))
-      console.log('load')
+  var clock
+  $(window).on('scroll',function(){
+    if(clock){
+      clearTimeout(clock)
     }
-  }) 
-}
+    clock = setTimeout(function(){
+      console.log('hello')
+      lazyRender()
+    },300)
+    
+  })
 
-function checkShow($node){
-  var scrollTop = $(window).scrollTop()
-  var windowHeight = $(window).height()
-  var offsetTop = $node.offset().top
-  if(offsetTop < scrollTop + windowHeight && offsetTop > scrollTop) {
-    return true
+  function lazyRender() {
+    $('.container img').each(function(){
+      if( checkShow($(this)) && !isLoaded($(this)) ){
+        loadImg($(this))
+      }
+    }) 
   }
-  return false
-}
+
+  function checkShow($node){
+    var scrollTop = $(window).scrollTop()
+    var windowHeight = $(window).height()
+    var offsetTop = $node.offset().top
+    if(offsetTop < scrollTop + windowHeight && offsetTop > scrollTop) {
+      return true
+    }
+    return false
+  }
   function isLoaded($img) {
-    return $img.attr('src') === $img.attr('data-src')
-  }
+      return $img.attr('src') === $img.attr('data-src')
+    }
 
   function loadImg($img){
     $img.attr('src', $img.attr('data-src'))
