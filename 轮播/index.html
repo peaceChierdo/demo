@@ -137,57 +137,57 @@
     playPre(1)
   })
   
-  //css切换效果
+ // css切换效果
 
-  // function playNext(len){
-  //     $imgct.animate({
-  //     left: '-='+imgWidth*len,
-  //   },function(){
-  //     pageIndex += len
-  //     if(pageIndex === imgCount) {
-  //       pageIndex = 0
-  //       $imgct.css({left: -imgWidth})
-  //     }
-  //     setBullet()
-  //   })
-  // }
-
-  // function playPre(len){
-  //   $imgct.animate({
-  //     left: '+='+imgWidth*len,
-  //   },function(){
-  //      pageIndex -= len
-  //      if(pageIndex <0){
-  //       pageIndex = imgCount-1
-  //       $imgct.css({left: -imgCount*imgWidth})
-  //      }
-  //      setBullet()
-  //   })
-  // }
-
- // 闪现渐变= =
   function playNext(len){
-  $imgct.animate({opacity:0},800).animate({left: '-='+imgWidth*len},0,function(){ 
-    pageIndex += len
-  if(pageIndex === imgCount) {
-     pageIndex = 0
-     $imgct.css({left: -imgWidth})
-   }
-   setBullet()
-  }).animate({opacity:1},1000)
-  //setBullet()
-}
+      $imgct.animate({
+      left: '-='+imgWidth*len,
+    },function(){
+      pageIndex += len
+      if(pageIndex === imgCount) {
+        pageIndex = 0
+        $imgct.css({left: -imgWidth})
+      }
+      setBullet()
+    })
+  }
+
   function playPre(len){
-  $imgct.animate({opacity:0.1},500).animate({left: '+='+imgWidth*len, },0,function(){
-    pageIndex -= len
-    if(pageIndex <0){
-    pageIndex = imgCount-1
-    $imgct.css({left: -imgCount*imgWidth})
-    }
-    setBullet()
-  }).animate({opacity:1},1000)
-  setBullet()
-}
+    $imgct.animate({
+      left: '+='+imgWidth*len,
+    },function(){
+       pageIndex -= len
+       if(pageIndex <0){
+        pageIndex = imgCount-1
+        $imgct.css({left: -imgCount*imgWidth})
+       }
+       setBullet()
+    })
+  }
+
+//  // 闪现渐变= =
+//   function playNext(len){
+//   $imgct.animate({opacity:0},800).animate({left: '-='+imgWidth*len},0,function(){ 
+//     pageIndex += len
+//   if(pageIndex === imgCount) {
+//      pageIndex = 0
+//      $imgct.css({left: -imgWidth})
+//    }
+//    setBullet()
+//   }).animate({opacity:1},1000)
+//   //setBullet()
+// }
+//   function playPre(len){
+//   $imgct.animate({opacity:0.1},500).animate({left: '+='+imgWidth*len, },0,function(){
+//     pageIndex -= len
+//     if(pageIndex <0){
+//     pageIndex = imgCount-1
+//     $imgct.css({left: -imgCount*imgWidth})
+//     }
+//     setBullet()
+//   }).animate({opacity:1},1000)
+//   setBullet()
+// }
 
 //fade渐变 (不太流畅)       
 // ？playNext()中的fadeIn()看不出效果，只有最后一张切换到第一张有效果

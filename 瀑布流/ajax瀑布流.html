@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <title>ajax瀑布流</title>
+
+  <style type="text/css">
+       ul,
+    li,
+    p,
+    div {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    .wrap {
+      width: 1100px;
+      margin: 0 auto;
+    }
+
+    .clearfix {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    #pic-ct {
+      position: relative;
+    }
+
+    #pic-ct .item {
+      position: absolute;
+      padding: 0 0 10px 0;
+      width: 250px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      background: #fff;
+      /*opacity: 1;*/
+      transition: all 1s;
+    }
+
+    #pic-ct .item img {
+      margin: 10px;
+      width: 230px;
+    }
+
+    h4 {
+      height: 30px;
+      line-height: 30px;
+      margin: 0 12px;
+      border-bottom: 1px solid #bbb;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 1.8;
+      margin: 10px 15px 0 15px;
+      color: #666
+    }
+
+    .hide {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="ct-waterfall">
+      <ul id="pic-ct" class="clearfix">
+        <!-- <li class="item">
+          <a href="http:\/\/slide.tech.sina.com.cn\/d\/slide_5_453_96657.html\/d\/2" class="link">
+              <img src="http:\/\/n.sinaimg.cn\/tech\/transform\/20170811\/2fav-fyixiar9436301.jpg" alt="">
+            </a>
+          <h4 class="header">标题</h4>
+          <p class="desp">
+            内容
+          </p>
+        </li> -->
+        <li class="item hide"></li>
+      </ul>
+      
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script>
+      var currentPage = 1
+      var ppCount = 10
+      var ttHeights = []
+      var itemWidth = $('.item').outerWidth(true)
+      var colCounts = parseInt( $('#pic-ct').width() / itemWidth )
+      var nodeWidth = $('.item').outerWidth(true)
+      
+
+      for(var i=0; i< colCounts; i++){
+        ttHeights[i] = 0 
+      }
+
+      start()
+
+      $(window).scroll(function(){
+        if(isBottom()){
+          start()
+        }
+      })
+
+      function isBottom(){
+        return $(window).height()+ $(window).scrollTop() >= $(document).height()
+      }
+      
+      function start(){
+        getData(function(newsList){
+          console.log(newsList) 
+          $.each(newsList,function(idx, news){        
+            var $node = getNode(news) 
+            console.log('继续')
+            $node.find('img').load(function(){
+              console.log('enter')
+              $('#pic-ct').append($node)
+              waterFall($node)   //必须先把该元素添加到dom文档,再操作
+              })
+
+          })
+        })
+      }
+
+      function getData(callback){
+        $.ajax({
+          url: 'http://platform.sina.com.cn/slide/album_tech',
+          dataType: 'jsonp',   
+          jsonp:"jsoncallback",
+          data:{
+             app_key: '1271687855',
+             num: ppCount,
+             page: currentPage     
+          }
+        }).done(function(ret){
+          if(ret && ret.status && ret.status.code === "0"){
+            callback(ret.data)
+            currentPage++
+          }else{
+            console.log('error')
+          }
+          
+        })
+      }
+
+      
+      function getNode (news){
+        var html = ''
+        html += '<li class = "item">';
+        html +=  '<a href="'+ news.url +'" ><img src=" '+ news.img_url +' " alt=""></a>';
+        html += '<h4>'+news.short_name+'</h4>';
+        html += '<p>'+ news.short_intro+'</p>';
+        html += '</li>';
+        return $(html)
+      }
+
+
+      function waterFall($node){
+        var min = Math.min.apply(null,ttHeights)
+        var minIndex = ttHeights.indexOf(min)
+        console.log($node)
+        console.log(min)
+        
+        $node.css({
+          top: ttHeights[minIndex],
+          left: $('.item').outerWidth(true)*minIndex,
+          // opacity: 1
+        })
+        
+        ttHeights[minIndex] +=$node.outerHeight(true)
+        $('#pic-ct').height(Math.max.apply(null, ttHeights))
+      }
+
+
+
+
+    </script>
+</body>
+</html>
