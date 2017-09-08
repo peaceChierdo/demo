@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+    <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <style type="text/css">
+  	.ct {
+  border: 1px solid;
+  height:1000px;
+  position: relative;
+}
+.btn {
+  bottom: 10px;
+  position: absolute;
+  padding: 10px;
+  font-size: 18px;
+  left: 50%;
+  
+}
+  </style>
+</head>
+<body>
+<div class="ct"></div>
+
+<script type="text/javascript">
+function GoTop($ct){
+  this.ct = $('.ct')
+   this.target = $('<button class="btn">Go Top</button>')
+ // this.target = $('<a href="#" class="btn">返回顶部</a>') 没意义
+}
+
+GoTop.prototype = {
+  bindEvent: function(){
+    this.target.click(function(){
+      $(window).scrollTop(0)
+    })   
+  },
+  createNode: function(){
+     var $node = this.target
+     $('.ct').append($node)  
+}  
+}
+
+var go = new GoTop($('.ct'))
+go.createNode()
+go.bindEvent()
+
+</script>
+</body>
+</html>

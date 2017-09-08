@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>木桶布局</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .img-preview{
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    .img-row {
+      margin-bottom: 8px;
+    }
+
+    .img-row:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .img-box {
+      float: left;
+    }
+
+    .img-line .img-box:first-child {
+      padding-left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="img-preview">
+
+  </div>
+
+  <script >
+    function Barrel($ct){
+      this.$ct = $ct
+      this.rowList = []
+      this.loadImg()
+
+    }
+
+    Barrel.prototype = {
+      loadImg: function(){
+        var _this = this
+        var imgs = this.getImgUrls(30)
+
+        for(var i=0; i<imgs.length; i++){
+          var img = new Image()
+          img.src = imgs[i]
+          img.onload = function(){ // 图片加载完成后，按照高度200缩放图片
+            var imgInfo = {
+              target: this,
+              height: 200,
+              width: (this.width/this.height)*200
+            }
+            _this.render(imgInfo)  //逐个render
+          }
+          
+        }
+
+      },
+
+      render: function(imgInfo){
+        var ctWidth = this.$ct.width()
+        var rowWidth = 0
+        var newRowHeight = 0
+        var lastImgInfo = imgInfo
+
+        this.rowList.push(imgInfo)
+        for(var i=0; i<this.rowList.length; i++){
+          console.log(this.rowList[i].width)
+           rowWidth += (this.rowList[i].width) //rowList里是imgInfo， width是属性
+        }
+        if(rowWidth > ctWidth){
+          this.rowList.pop()
+          rowWidth = rowWidth - lastImgInfo.width
+          newRowHeight = (ctWidth*200)/rowWidth  //以ctWidth为宽度拉伸
+          this.layout(newRowHeight)
+          console.log(this.rowList)
+
+          this.rowList = []
+          this.rowList.push(imgInfo)
+
+        }
+
+      },
+
+
+      layout: function(newRowHeight){
+        var $rowct = $('<div class="img-row"></div>')
+        $.each(this.rowList, function(idx, imgInfo){
+          var $imgct = $('<div class="img-box"></div>')
+          var $img = $(imgInfo.target)
+          $img.height(newRowHeight)
+          $imgct.append($img)
+          $rowct.append($imgct)
+        })
+        this.$ct.append($rowct)
+
+      },
+      getImgUrls: function(num){
+        //var width, height, color
+        var urls = []
+        for(var i=0; i<num; i++){
+          var height1 = parseInt(Math.random()*150+150,10) 
+          var width1 = parseInt(Math.random()*150+150,10)
+          urls.push(`https://unsplash.it/${width1}/${height1}`) 
+        }
+        return urls
+
+      }
+
+
+    }
+
+    var Barrel1 = new Barrel($('.img-preview'))
+
+  </script>
+
+</body>
+</html>
