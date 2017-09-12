@@ -122,7 +122,7 @@
       <li></li>
      </ul>    
  </div>
-
+ 
  <script type="text/javascript"> 
 
   var Carousel = (function(){
@@ -146,9 +146,9 @@
 
 
         //图片是http协议的时候，不放在src属性里就没有阻止
-		$imgs.each(function($img){
-			var imgUrl = $img.attr('data-src')
-	        $img.attr('src', imgUrl)
+		$imgs.find('img').each(function(img){
+			var imgUrl = $(this).attr('data-src')
+	        $(this).attr('src', imgUrl)
 		})
 
 
