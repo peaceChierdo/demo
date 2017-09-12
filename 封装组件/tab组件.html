@@ -207,10 +207,12 @@
   </div>
 
 
-    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
   <script >
 
-  function TabColor($ct){
+  var TabColorWrap = (function(){
+
+    function TabColor($ct){
     this.$ct = $ct
     this.init()
     this.bind()
@@ -223,77 +225,78 @@
       this.wrapWidth = this.$ct.find('.wrap').width()
     },
     bind: function(){
-      var _this = this
-      var index = 0
-      this.tablis.click(function(){
-        var $this = $(this)
-         $this.addClass('active').siblings().removeClass('active')
-         index = $this.index()
-         _this.panels.animate({left: -(_this.wrapWidth*index)})
-      })
+        var _this = this
+        var index = 0
+        this.tablis.click(function(){
+          var $this = $(this)
+           $this.addClass('active').siblings().removeClass('active')
+           index = $this.index()
+           _this.panels.animate({left: -(_this.wrapWidth*index)})
+        })
+      }
+
+    }
+    return {
+          init: function($ct){
+              $ct.each(function(idx, node){
+                  new TabColor($(node));
+              })
+          }
+      }
+
+  })()
+
+ TabColorWrap.init($('.mod-tab'))
+
+
+
+
+
+  var TabWrap = (function(){
+
+    function Tab(ct){
+      this.ct = ct
+      this.init()
+      this.bind()
     }
 
-  }
+    Tab.prototype = {
+      init: function(){
+        this.tabLis = this.ct.querySelectorAll('.tab-header>li')
+        this.tabPanels = this.ct.querySelectorAll('.tab-container>li')
+      },
+      bind: function(){
+        var _this = this
+        this.tabLis.forEach(function(tabli){
+          tabli.onclick = function(e){
+            var target = e.target
+            var index = [].indexOf.call(_this.tabLis, target)
 
+            _this.tabLis.forEach(function(li){
+              li.classList.remove('active')
+            })
+            target.classList.add('active')
 
+            _this.tabPanels.forEach(function(panel){
+              panel.classList.remove('active')
+            })
+            _this.tabPanels[index].classList.add('active')
 
-  function Tab(ct){
-    this.ct = ct
-    this.init()
-    this.bind()
-  }
-
-  Tab.prototype = {
-    init: function(){
-      this.tabLis = this.ct.querySelectorAll('.tab-header>li')
-      this.tabPanels = this.ct.querySelectorAll('.tab-container>li')
-    },
-    bind: function(){
-      var _this = this
-      this.tabLis.forEach(function(tabli){
-        tabli.onclick = function(e){
-          var target = e.target
-          var index = [].indexOf.call(_this.tabLis, target)
-
-          _this.tabLis.forEach(function(li){
-            li.classList.remove('active')
-          })
-          target.classList.add('active')
-
-          _this.tabPanels.forEach(function(panel){
-            panel.classList.remove('active')
-          })
-          _this.tabPanels[index].classList.add('active')
-
-        }
-      })
+          }
+        })
+      }
     }
-  }
+      return {
+      init: function(ct){
+        new Tab(ct)
+      }
+    }
 
+  })()
 
+  TabWrap.init(document.querySelectorAll('.tab')[0])
 
-
-
-  new TabColor($('.mod-tab1'))
-  new TabColor($('.mod-tab2'))
-  new Tab(document.querySelectorAll('.tab')[0])
-
-
-
-
-
-
-   //  $('.tabs>li').on('click',function(){
-   //  var $this =$(this)
-   //  $this.addClass('active').siblings().removeClass('active')
-    
-   //  var index = $this.index()
-   //  var wrapWidth = $('.wrap').width()
-    
-   //  $('.panels').animate({left: -wrapWidth*index})
-   // })
-
-  </script>
+</script>
 
 
 
