@@ -125,124 +125,102 @@
  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
  <script type="text/javascript"> 
 
- 	 var Carousel = (function(){
+  var Carousel = (function(){
 
- 		function _Carousel($ct){
- 			this.$ct = $ct
- 			this.init()
- 			this.bind()
- 			
- 			
- 		}
+	function _Carousel($ct){
+		this.$ct = $ct
+		this.init()
+		this.bind()		
+	}
 
- 		_Carousel.prototype = {
- 			init: function(){
- 				var $imgct = this.$imgct = this.$ct.find('.img-ct')     
-				var $imgs = this.$imgs = this.$ct.find('.img-ct >li')
-				var $prebtn = this.$prebtn =this.$ct.find('.prebtn')
-				var $nextbtn = this.$nextbtn =this.$ct.find('.nextbtn')
-				var $bullets = this.$bullets =this.$ct.find('.bullet >li')
-				var $carousel = this.$carousel =this.$ct.find('.carousel')
-				var pageIndex = this.pageIndex = 0
-				var flag = this.flag =0
+	_Carousel.prototype = {
+		init: function(){
+			var $imgct = this.$imgct = this.$ct.find('.img-ct')     
+		var $imgs = this.$imgs = this.$ct.find('.img-ct >li')
+		var $prebtn = this.$prebtn =this.$ct.find('.prebtn')
+		var $nextbtn = this.$nextbtn =this.$ct.find('.nextbtn')
+		var $bullets = this.$bullets =this.$ct.find('.bullet >li')
+		var $carousel = this.$carousel =this.$ct.find('.carousel')
+		var pageIndex = this.pageIndex = 0
+		var flag = this.flag =0
 
-				$imgct.append(this.$imgs.first().clone())  
-				$imgct.prepend(this.$imgs.last().clone())
+		$imgct.append(this.$imgs.first().clone())  
+		$imgct.prepend(this.$imgs.last().clone())
 
-				var imgCount = this.imgCount =$imgs.length
-				var imgWidth = this.imgWidth = $imgs.width()
+		var imgCount = this.imgCount =$imgs.length
+		var imgWidth = this.imgWidth = $imgs.width()
 
 
-				$imgct.width(imgWidth*(imgCount+2))
-				$imgct.css({left: -imgWidth})
+		$imgct.width(imgWidth*(imgCount+2))
+		$imgct.css({left: -imgWidth})
 
- 			},
- 			bind: function(){	 
- 				var _this = this						
-				this.$nextbtn.click(function(e){
-					 e.preventDefault();
-					_this.playNext(1)
+		},
+		bind: function(){	 
+			var _this = this						
+		this.$nextbtn.click(function(e){
+			 e.preventDefault();
+			_this.playNext(1)
+		})
+		this.$prebtn.click(function(e){
+			 e.preventDefault();
+			_this.playPre(1)
+		})
+		this.$bullets.click(function(){					
+		    var index = $(this).index()
+		    if(index > _this.pageIndex){
+		      _this.playNext(index - _this.pageIndex)
+		    }else if(index < _this.pageIndex){
+		      _this.playPre(_this.pageIndex-index)
+		    }
+	  })
+
+		},
+		playNext: function(len){
+			    var _this = this
+			this.$imgct.animate({
+			  left: '-='+_this.imgWidth*len,
+			}, function(){
+			  _this.pageIndex += len
+			  console.log(_this.pageIndex)
+			  if(_this.pageIndex === _this.imgCount) {
+			    _this.pageIndex = 0
+			    _this.$imgct.css({left: -(_this.imgWidth)})
+			  }			
+			  _this.setBullet()							  
+			})
+			
+		},
+		playPre: function (len){
+			        var _this = this
+				this.$imgct.animate({
+				  left: '+='+(_this.imgWidth*len),
+				}, function(){
+				   _this.pageIndex -= len
+				   if(_this.pageIndex <0){
+				    _this.pageIndex = _this.imgCount-1
+				    _this.$imgct.css({left: -(_this.imgCount*_this.imgWidth)})
+				   }
+				   _this.setBullet()							   
 				})
-				this.$prebtn.click(function(e){
-					 e.preventDefault();
-					_this.playPre(1)
-				})
-				this.$bullets.click(function(){					
-				    var index = $(this).index()
-				    if(index > _this.pageIndex){
-				      _this.playNext(index - _this.pageIndex)
-				    }else if(index < _this.pageIndex){
-				      _this.playPre(_this.pageIndex-index)
-				    }
-			  })
+				
+			},
+		setBullet: function(){
+			 this.$bullets.removeClass('active').eq(this.pageIndex).addClass('active')
+		}
+	}
 
- 			},
- 			playNext: function(len){
- 				    var _this = this
-					this.$imgct.animate({
-					  left: '-='+_this.imgWidth*len,
-					}, function(){
-					  _this.pageIndex += len
-					  console.log(_this.pageIndex)
-					  if(_this.pageIndex === _this.imgCount) {
-					    _this.pageIndex = 0
-					    _this.$imgct.css({left: -(_this.imgWidth)})
-					  }			
-					  _this.setBullet()							  
-					})
-					
-				},
- 			playPre: function (len){
- 				        var _this = this
-						this.$imgct.animate({
-						  left: '+='+(_this.imgWidth*len),
-						}, function(){
-						   _this.pageIndex -= len
-						   if(_this.pageIndex <0){
-						    _this.pageIndex = _this.imgCount-1
-						    _this.$imgct.css({left: -(_this.imgCount*_this.imgWidth)})
-						   }
-						   _this.setBullet()							   
-						})
-						
-					},
-			setBullet: function(){
-				 this.$bullets.removeClass('active').eq(this.pageIndex).addClass('active')
-			}
+	return {
+	init: function($ct){
+	    $ct.each(function(index, node){
+	        new _Carousel($(node));
+	    })
+	  }
+	}
 
+	})()
 
- 		}
+  Carousel.init($('.carousel'))
 
-	    return {
-            init: function($ct){
-                $ct.each(function(index, node){
-                    new _Carousel($(node));
-                })
-            }
-        }
-  
-       // new _Carousel($('.carousel').eq(0));
- 	})()
-
-      Carousel.init($('.carousel'))
-	  
-	//  自动播放
-	  // var autoplay 
-	  // function setIntv(){
-	  //   autoplay = setInterval(function(){
-	  //     playNext(1)
-	  //   },3000)
-	  // } 
-	  // $carousel.mouseout(function(){
-	  //   setIntv()
-	  // }).mouseover(function(){
-	  //   clearInterval(autoplay)
-	  // })
-
-	  // setIntv()
-
-  
-  
   
 </script>
 </body>
