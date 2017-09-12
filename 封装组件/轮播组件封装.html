@@ -144,6 +144,8 @@
 		var pageIndex = this.pageIndex = 0
 		var flag = this.flag =0
 
+
+        //图片是http协议的时候，不放在src属性里就没有阻止
 		$imgs.each(function($img){
 			var imgUrl = $img.attr('data-src')
 	        $img.attr('src', imgUrl)
