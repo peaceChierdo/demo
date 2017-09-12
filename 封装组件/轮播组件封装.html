@@ -92,10 +92,10 @@
 <body>
  <div class="carousel ">
    <ul class="img-ct clearfix">
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></a></li>
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" /></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" /></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" /></a></li>
    </ul>
    <a class="prebtn btn" href="#"><</a>
    <a class="nextbtn btn" href="#">></a>  
@@ -108,10 +108,10 @@
  </div>
   <div class="carousel ">
    <ul class="img-ct clearfix">
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></a></li>
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
-    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" /></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" /></a></li>
+  <li><a href="#"><img src="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" /></a></li>
    </ul>
    <a class="prebtn btn" href="#"><</a>
    <a class="nextbtn btn" href="#">></a>  
@@ -135,7 +135,7 @@
 
 	_Carousel.prototype = {
 		init: function(){
-			var $imgct = this.$imgct = this.$ct.find('.img-ct')     
+		var $imgct = this.$imgct = this.$ct.find('.img-ct')    			 
 		var $imgs = this.$imgs = this.$ct.find('.img-ct >li')
 		var $prebtn = this.$prebtn =this.$ct.find('.prebtn')
 		var $nextbtn = this.$nextbtn =this.$ct.find('.nextbtn')
@@ -143,6 +143,12 @@
 		var $carousel = this.$carousel =this.$ct.find('.carousel')
 		var pageIndex = this.pageIndex = 0
 		var flag = this.flag =0
+
+		$imgs.each(function($img){
+			var imgUrl = $img.attr('data-src')
+	        $img.attr('src', imgUrl)
+		})
+
 
 		$imgct.append(this.$imgs.first().clone())  
 		$imgct.prepend(this.$imgs.last().clone())
@@ -176,7 +182,7 @@
 
 		},
 		playNext: function(len){
-			    var _this = this
+			var _this = this
 			this.$imgct.animate({
 			  left: '-='+_this.imgWidth*len,
 			}, function(){
@@ -191,7 +197,7 @@
 			
 		},
 		playPre: function (len){
-			        var _this = this
+			    var _this = this
 				this.$imgct.animate({
 				  left: '+='+(_this.imgWidth*len),
 				}, function(){
