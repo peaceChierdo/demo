@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播封装</title>
+  <style type="text/css">
+  body{
+    background-color: #ddd;
+  }
+    *{
+      margin:0;
+      padding:0;
+      list-style: none;
+      text-decoration: none;
+    }
+    .clearfix:after{
+      display: block;
+      content:'';
+      clear: both;
+    }
+    .carousel{
+      position: relative;
+      width: 400px;
+      height:240px;
+      overflow: hidden;
+      margin: 70px auto;
+    }
+    .img-ct{
+      position: absolute;
+      /*width: 1600px;*/
+    }
+    .img-ct>li {
+      float: left;
+         
+    }
+    .img-ct img{
+      width: 400px;
+      height: 240px;
+    }
+    .btn {
+      position: absolute;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      z-index: 1;
+      top: 50%;
+      margin-top: -15px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+      .btn:hover{
+        opacity: 1;
+      }
+    .nextbtn{
+      right: 10px;
+    }
+    .prebtn{
+      left: 10px;
+    }
+      .bullet {
+        position: absolute;
+        bottom:10px;
+        z-index: 1;
+        text-align: center;
+        width: 100%;        
+      }
+      .bullet li{
+        display: inline-block;
+        width: 28px;
+        height: 6px;
+        border-radius: 3px;
+        border: 1px solid #fff;
+        cursor: pointer;
+        margin: 0 3px;
+        
+      }
+      .bullet .active {
+        background-color: #fff;
+      }
+
+  </style>
+</head>
+
+<body>
+ <div class="carousel ">
+   <ul class="img-ct clearfix">
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+   </ul>
+   <a class="prebtn btn" href="#"><</a>
+   <a class="nextbtn btn" href="#">></a>  
+     <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+     </ul>    
+ </div>
+  <div class="carousel ">
+   <ul class="img-ct clearfix">
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+    <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+   </ul>
+   <a class="prebtn btn" href="#"><</a>
+   <a class="nextbtn btn" href="#">></a>  
+     <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+     </ul>    
+ </div>
+<!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+ <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+ <script type="text/javascript"> 
+
+ 	 var Carousel = (function(){
+
+ 		function _Carousel($ct){
+ 			this.$ct = $ct
+ 			this.init()
+ 			this.bind()
+ 			
+ 			
+ 		}
+
+ 		_Carousel.prototype = {
+ 			init: function(){
+ 				var $imgct = this.$imgct = this.$ct.find('.img-ct')     
+				var $imgs = this.$imgs = this.$ct.find('.img-ct >li')
+				var $prebtn = this.$prebtn =this.$ct.find('.prebtn')
+				var $nextbtn = this.$nextbtn =this.$ct.find('.nextbtn')
+				var $bullets = this.$bullets =this.$ct.find('.bullet >li')
+				var $carousel = this.$carousel =this.$ct.find('.carousel')
+				var pageIndex = this.pageIndex = 0
+				var flag = this.flag =0
+
+				$imgct.append(this.$imgs.first().clone())  
+				$imgct.prepend(this.$imgs.last().clone())
+
+				var imgCount = this.imgCount =$imgs.length
+				var imgWidth = this.imgWidth = $imgs.width()
+
+
+				$imgct.width(imgWidth*(imgCount+2))
+				$imgct.css({left: -imgWidth})
+
+ 			},
+ 			bind: function(){	 
+ 				var _this = this						
+				this.$nextbtn.click(function(e){
+					 e.preventDefault();
+					_this.playNext(1)
+				})
+				this.$prebtn.click(function(e){
+					 e.preventDefault();
+					_this.playPre(1)
+				})
+				this.$bullets.click(function(){					
+				    var index = $(this).index()
+				    if(index > _this.pageIndex){
+				      _this.playNext(index - _this.pageIndex)
+				    }else if(index < _this.pageIndex){
+				      _this.playPre(_this.pageIndex-index)
+				    }
+			  })
+
+ 			},
+ 			playNext: function(len){
+ 				    var _this = this
+					this.$imgct.animate({
+					  left: '-='+_this.imgWidth*len,
+					}, function(){
+					  _this.pageIndex += len
+					  console.log(_this.pageIndex)
+					  if(_this.pageIndex === _this.imgCount) {
+					    _this.pageIndex = 0
+					    _this.$imgct.css({left: -(_this.imgWidth)})
+					  }			
+					  _this.setBullet()							  
+					})
+					
+				},
+ 			playPre: function (len){
+ 				        var _this = this
+						this.$imgct.animate({
+						  left: '+='+(_this.imgWidth*len),
+						}, function(){
+						   _this.pageIndex -= len
+						   if(_this.pageIndex <0){
+						    _this.pageIndex = _this.imgCount-1
+						    _this.$imgct.css({left: -(_this.imgCount*_this.imgWidth)})
+						   }
+						   _this.setBullet()							   
+						})
+						
+					},
+			setBullet: function(){
+				 this.$bullets.removeClass('active').eq(this.pageIndex).addClass('active')
+			}
+
+
+ 		}
+
+	    return {
+            init: function($ct){
+                $ct.each(function(index, node){
+                    new _Carousel($(node));
+                })
+            }
+        }
+  
+       // new _Carousel($('.carousel').eq(0));
+ 	})()
+
+      Carousel.init($('.carousel'))
+	  
+	//  自动播放
+	  // var autoplay 
+	  // function setIntv(){
+	  //   autoplay = setInterval(function(){
+	  //     playNext(1)
+	  //   },3000)
+	  // } 
+	  // $carousel.mouseout(function(){
+	  //   setIntv()
+	  // }).mouseover(function(){
+	  //   clearInterval(autoplay)
+	  // })
+
+	  // setIntv()
+
+  
+  
+  
+</script>
+</body>
+</html>
