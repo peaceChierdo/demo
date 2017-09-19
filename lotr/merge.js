@@ -53,7 +53,6 @@ define('carousel',['jquery'], function($){
 			var autoplay
 			var _this = this
 				
-
 			this.$btn.each(function(idx, $node){
 			  	_this.autoStop($node)
 			})
@@ -79,10 +78,20 @@ define('carousel',['jquery'], function($){
 
 		        //图片是http协议的时候，不放在src属性里就没有阻止
 				$imgs.find('img').each(function(img){
-					var imgUrl = $(this).attr('data-src')
+					// var imgUrl = $(this).attr('data-src')
+			  //       $(this).attr('src', imgUrl)
+			  //       var viewWidth = $(window).width()
+			  //       $(this).css({width: viewWidth})
+			        var imgUrl = $(this).attr('data-src')
 			        $(this).attr('src', imgUrl)
 			        var viewWidth = $(window).width()
 			        $(this).css({width: viewWidth})
+		         	var aimg = new Image()
+		         	aimg.src = $(this).attr('data-src')
+
+		         	aimg.onload = function(){
+		         		this.setIntv()
+		         	}			  
 				})
 
 				$imgct.append(this.$imgs.first().clone())  

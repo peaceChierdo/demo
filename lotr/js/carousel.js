@@ -40,6 +40,13 @@ define(['jquery'], function($){
 			        $(this).attr('src', imgUrl)
 			        var viewWidth = $(window).width()
 			        $(this).css({width: viewWidth})
+		         	var aimg = new Image()
+		         	aimg.src = $(this).attr('data-src')
+
+		         	aimg.onload = function(){
+		         		this.setIntv()
+		         	}
+
 				})
 
 				$imgct.append(this.$imgs.first().clone())  
@@ -50,7 +57,7 @@ define(['jquery'], function($){
 
 				$imgct.width(imgWidth*(imgCount+2))
 				$imgct.css({left: -imgWidth})
-				this.setIntv()
+				
 
 			},
 			setIntv: function(){
