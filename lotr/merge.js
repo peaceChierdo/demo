@@ -84,8 +84,6 @@ define('carousel',['jquery'], function($){
 			  //       $(this).attr('src', imgUrl)
 			  //       var viewWidth = $(window).width()
 			  //       $(this).css({width: viewWidth})
-			        var imgUrl = $(this).attr('data-src')		        
-			        $(this).attr('src', imgUrl)
 			        var viewWidth = $(window).width()
 			        $(this).css({width: viewWidth})
 		         	var aimg = new Image()
