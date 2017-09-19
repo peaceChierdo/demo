@@ -9,7 +9,7 @@ define(['jquery'], function($){
 			this.bind()		
 			var autoplay
 			var _this = this
-			this.setIntv()	
+				
 
 			this.$btn.each(function(idx, $node){
 			  	_this.autoStop($node)
@@ -50,6 +50,7 @@ define(['jquery'], function($){
 
 				$imgct.width(imgWidth*(imgCount+2))
 				$imgct.css({left: -imgWidth})
+				this.setIntv()
 
 			},
 			setIntv: function(){
