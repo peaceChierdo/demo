@@ -102,7 +102,7 @@ define('carousel',['jquery'], function($){
 
 				$imgct.width(imgWidth*(imgCount+2))
 				$imgct.css({left: -imgWidth})
-				this.setIntv()
+	
 
 			},
 			setIntv: function(){
