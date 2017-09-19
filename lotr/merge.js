@@ -76,6 +76,7 @@ define('carousel',['jquery'], function($){
 				var $carousel = this.$carousel =this.$ct.find('.carousel')
 				var pageIndex = this.pageIndex = 0
 				var flag = this.flag =0
+				var count = 0
 
 		        //图片是http协议的时候，不放在src属性里就没有阻止
 				$imgs.find('img').each(function(img){
@@ -83,15 +84,21 @@ define('carousel',['jquery'], function($){
 			  //       $(this).attr('src', imgUrl)
 			  //       var viewWidth = $(window).width()
 			  //       $(this).css({width: viewWidth})
-			        var imgUrl = $(this).attr('data-src')
+			        var imgUrl = $(this).attr('data-src')		        
 			        $(this).attr('src', imgUrl)
 			        var viewWidth = $(window).width()
 			        $(this).css({width: viewWidth})
 		         	var aimg = new Image()
 		         	aimg.src = $(this).attr('data-src')
-		         	aimg.onload = function(){
-		         		_this.setIntv()
-		         	}			  
+		         	
+		         	aimg.onload = function(){		         		
+		         		count++		
+		         		console.log(count)
+			         	if(count==3 ){
+			         		_this.setIntv()
+			         	}				         		         		
+		         	}
+
 				})
 
 				$imgct.append(this.$imgs.first().clone())  
