@@ -67,6 +67,7 @@ define('carousel',['jquery'], function($){
 
 		_Carousel.prototype = {
 			init: function(){
+				var _this = this
 				var $imgct = this.$imgct = this.$ct.find('.img-ct')    			 
 				var $imgs = this.$imgs = this.$ct.find('.img-ct >li')
 				var $prebtn = this.$prebtn =this.$ct.find('.prebtn')
@@ -88,9 +89,8 @@ define('carousel',['jquery'], function($){
 			        $(this).css({width: viewWidth})
 		         	var aimg = new Image()
 		         	aimg.src = $(this).attr('data-src')
-
 		         	aimg.onload = function(){
-		         		this.setIntv()
+		         		_this.setIntv()
 		         	}			  
 				})
 
