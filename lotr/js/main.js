@@ -1,10 +1,10 @@
 
 require.config({
     paths : {
-        "jquery" : './js/jquery-3.2.1.min',
-        "gotop": './js/gotop',
-        "carousel": './js/carousel',
-        "loadmore": './js/loadmore'
+        "jquery" : './jquery-3.2.1.min',
+        "gotop": './gotop',
+        "carousel": './carousel',
+        "loadmore": './loadmore'
     }
 });
 

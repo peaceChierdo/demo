@@ -10,6 +10,7 @@ define(['jquery'],function($){
       this.itemWidth = $('.item').outerWidth(true)
       this.colCounts = parseInt( $('#wtfpic-ct').width() /this.itemWidth )
       this.nodeWidth = $('.item').outerWidth(true)
+      this.items = $('#wtfpic-ct').find('li')
       var flag = 0  
 
       for(var i=0; i< this.colCounts; i++){
@@ -17,9 +18,17 @@ define(['jquery'],function($){
       }
 
       var _this = this
+      var eq = 0
       if(flag == 0){
-	      $('.item').each(function(idx, item){
-	      	_this.waterFall($(item))
+	      _this.items.find('img').each(function(idx, item){
+	         	var aimg = new Image()	
+	         	aimg.src = $(this).attr('src')	
+	         	console.log(aimg)         	
+	         	aimg.onload = function(){
+	         		_this.waterFall($(_this.items[eq]))
+	         		eq++
+	         		// console.log(_this.items[eq])		
+		        }	      	      	
 	      })
 	      ++flag
       }
@@ -40,7 +49,18 @@ define(['jquery'],function($){
 				var imgUrls = []
 				for(var i=0; i< 10; i++){
 					var number = parseInt(Math.random()*60+1)
-					imgUrls.push(`./pic/w${number}.jpg`)
+
+				// 	SyntaxError: Unexpected character '`'
+				// If the source uses ES2015 or later syntax, ple
+				// ase pass "optimize: 'none'" to r.js and use an
+				//  ES2015+ compatible minifier after running r.j
+				// s. The included UglifyJS only understands ES5
+				// or earlier syntax.
+
+				//imgUrls.push(`./pic/w${number}.jpg`)
+
+					var aurl = './pic/w'+number+'.jpg'
+					imgUrls.push(aurl)
 				}
 				return imgUrls
 				
