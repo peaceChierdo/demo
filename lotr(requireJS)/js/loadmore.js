@@ -10,31 +10,24 @@ define(['jquery'],function($){
       this.itemWidth = $('.item').outerWidth(true)
       this.colCounts = parseInt( $('#wtfpic-ct').width() /this.itemWidth )
       this.nodeWidth = $('.item').outerWidth(true)
-      this.items = $('#wtfpic-ct').find('li')
       var flag = 0  
+      this.lock = 0
 
       for(var i=0; i< this.colCounts; i++){
         this.ttHeights[i] = 0 
       }
 
       var _this = this
-      var eq = 0
       if(flag == 0){
-	      _this.items.find('img').each(function(idx, item){
-	         	var aimg = new Image()	
-	         	aimg.src = $(this).attr('src')	
-	         	console.log(aimg)         	
-	         	aimg.onload = function(){
-	         		_this.waterFall($(_this.items[eq]))
-	         		eq++
-	         		// console.log(_this.items[eq])		
-		        }	      	      	
+	      $('.item').each(function(idx, item){
+	      	_this.waterFall($(item))
 	      })
 	      ++flag
       }
 
       this.$btn.click(function(){
-      	console.log('click')   	
+      	console.log('click')  
+      	if(_this.lock === 1){ return } 	
       	_this.start()  
       })
       
@@ -49,18 +42,7 @@ define(['jquery'],function($){
 				var imgUrls = []
 				for(var i=0; i< 10; i++){
 					var number = parseInt(Math.random()*60+1)
-
-				// 	SyntaxError: Unexpected character '`'
-				// If the source uses ES2015 or later syntax, ple
-				// ase pass "optimize: 'none'" to r.js and use an
-				//  ES2015+ compatible minifier after running r.j
-				// s. The included UglifyJS only understands ES5
-				// or earlier syntax.
-
-				//imgUrls.push(`./pic/w${number}.jpg`)
-
-					var aurl = './pic/w'+number+'.jpg'
-					imgUrls.push(aurl)
+					imgUrls.push(`./pic/w${number}.jpg`)
 				}
 				return imgUrls
 				
@@ -93,6 +75,7 @@ define(['jquery'],function($){
 				var _this = this
 				var imgUrls = []
 				var imgUrls = this.getImg()
+				_this.lock = 1
 
 				$.each(imgUrls, function(idx, imgurl){				
 					 var $node = _this.createNode(imgurl)
@@ -113,6 +96,7 @@ define(['jquery'],function($){
           //})
 
 				})
+				_this.lock = 0
 				
 			}			
 
