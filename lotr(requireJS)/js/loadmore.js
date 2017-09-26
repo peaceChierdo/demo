@@ -42,7 +42,8 @@ define(['jquery'],function($){
 				var imgUrls = []
 				for(var i=0; i< 10; i++){
 					var number = parseInt(Math.random()*60+1)
-					imgUrls.push(`./pic/w${number}.jpg`)
+					var aurl = './pic/w'+number+'.jpg'
+					imgUrls.push(aurl)
 				}
 				return imgUrls
 				
