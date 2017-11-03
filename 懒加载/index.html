@@ -48,11 +48,9 @@
 </ul>
 
 <script>
-  lazyRender()
-
   var clock
   $(window).on('scroll',function(){
-    if(clock){
+    if(clock){     //只加载最后滚动到的地方
       clearTimeout(clock)
     }
     clock = setTimeout(function(){
