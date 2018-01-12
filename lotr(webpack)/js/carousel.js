@@ -3,54 +3,54 @@
 	var Carousel = (function(){
 
 		function _Carousel($ct){
+			var _this = this
 			this.$ct = $ct
 			this.$btn = $('.carousel .btn')
 			this.$bullets = $('.carousel .bullet li')
 			this.init()
 			this.bind()		
-			var autoplay
-			var _this = this
-				
-
+			var autoplay		
+			
 			this.$btn.each(function(idx, $node){
 			  	_this.autoStop($node)
 			})
 			this.$bullets.each(function(idx, $node){
 			  	_this.autoStop($node)
 			})			
-	
-
 		}
-
-
 
 		_Carousel.prototype = {
 			init: function(){
 				var $imgct = this.$imgct = this.$ct.find('.img-ct')    			 
-				var $imgs = this.$imgs = this.$ct.find('.img-ct >li')
+				var $imgs = this.$imgs = this.$ct.find('.img-ct li')
 				var $prebtn = this.$prebtn =this.$ct.find('.prebtn')
 				var $nextbtn = this.$nextbtn =this.$ct.find('.nextbtn')
-				var $bullets = this.$bullets =this.$ct.find('.bullet >li')
+				var $bullets = this.$bullets =this.$ct.find('.bullet li')
 				var $carousel = this.$carousel =this.$ct.find('.carousel')
 				var pageIndex = this.pageIndex = 0
 				var flag = this.flag =0
+				var count = 0
+				var _this = this
 
 		        //图片是http协议的时候，不放在src属性里就没有阻止
 				$imgs.find('img').each(function(img){
-		        var viewWidth = $(window).width()
-		        $(this).css({width: viewWidth})
-	         	var aimg = new Image()
-	         	aimg.src = $(this).attr('data-src')
-	         	
-	         	aimg.onload = function(){		         		
-	         		count++		
-	         		console.log(count)
-		         	if(count==3 ){
-		         		_this.setIntv()
-		         	}				         		         		
-	         	}
+			        var viewWidth = $(window).width()
+			        $(this).css({width: viewWidth})
+		  //        	// var aimg = new Image()
+		  //        	// aimg.src = $(this).attr('data-src')
+		         	
+		  //        	// aimg.onload = function(){		         		
+		         		count++		
+		         		console.log('onloaded')
+		         		console.log(count)
+
+			         	if(count==3 ){
+			         		_this.setIntv()
+			         	}				         		         		
+		         	//}
 
 				})
+				
 
 				$imgct.append(this.$imgs.first().clone())  
 				$imgct.prepend(this.$imgs.last().clone())
@@ -60,20 +60,16 @@
 
 				$imgct.width(imgWidth*(imgCount+2))
 				$imgct.css({left: -imgWidth})
-				
 
 			},
 			setIntv: function(){
-			  var _this = this 
-			  function setIntv(){
+				var _this = this
 			    _this.autoplay = setInterval(function(){
 			      _this.playNext(1)
-			    },3000)
-			  } 
-			  setIntv()				
+			    }, 2000)				
 			},
 			autoStop: function(node){
-				var _this = this
+			  var _this = this	
 			  $(node).mouseout(function(){
 			    _this.setIntv()
 			  }).mouseover(function(){
@@ -82,8 +78,8 @@
 			},
 			bind: function(){	 
 				var _this = this						
-			     this.$nextbtn.click(function(e){
-					 e.preventDefault();
+				this.$nextbtn.click(function(e){
+					e.preventDefault();
 					_this.playNext(1)
 				})
 				this.$prebtn.click(function(e){
@@ -134,11 +130,11 @@
 		}
 
 		return {
-		init: function($ct){
-		    $ct.each(function(index, node){
-		        new _Carousel($(node));
-		    })
-		  }
+			init: function($ct){
+			    $ct.each(function(index, node){
+			        new _Carousel($(node));
+			    })
+			  }
 		}
 
 	})()

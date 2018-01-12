@@ -2386,7 +2386,7 @@ loadMore.init($('.wrap'));
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"iconfont":"_239UDnrkXF44owt8_ZGx22","clearfix：after":"DgLbx9Ru0Am4TCWss9UJj","title":"_1xAtbCNXbYenv9mT_qcpR4","navbar":"_33bF_zNlkDJ3zbPIFvwLXb","nav-left":"_1FfxSe9xC5TncwE9YALlC2","logo":"_32mEjYu_oG6sWppPxg2ilb","nav-right":"_1X3EOmeFikM-95NuiUoVsw","navlist":"s9CqQ6qM23Ks6yKyDhx1f","carousel":"_38V2WZ_7T_-dP8qLjAK2Uk","img-ct":"GKqDDM9ivXs2aHBsRduDc","btn":"_1O0e3CVG0gik1qCfs8fp9z","nextbtn":"_2IPbpNHSeQ3bC3OPIcFzdj","prebtn":"_3z_o3rQZ4q06jHOq6S2Qrn","bullet":"xyfgHOka4Y1XOgtQHZean","active":"_1u4C-FgImhGDmmvU_mCgH5","intro-ct":"_1L22cloJuEAafXN7IFVXuT","intro":"_2lx8TSd6DR9xWqx-2oBb8y","intro-btn":"_1N6i8HFf9loJxAlCWB7GMW","gotop-ct":"_26O3t1CLELM_nkdK5uu78v","gotop-btn":"_2e-zhATXdBJvm3tJIronJc","service":"_3H9_LgzkJIntRv88BiPT-F","srvc-list":"_3K1KEzrioTfNeYo7vxoKl8","portfolio":"M8pNnVSjx6FDpphJLOvLF","portf-list":"_1xKbsUecZ8LbcRKDzlxHAo","imghover":"HD4cMhcHgpJzG5pGHcpjH","about":"_2NfYoYjx9Iuj3HTmS1Ouux","timeline":"_18u2hGnTqDQSeJebSTcTjh","panel":"_23p3mwkZrpt7VySyYpbK1Q","end-img":"Uci3bZ8ti8J0sPZa8s0oM","stills":"_2oxp-BJgl2U37aTbi97vtG","wrap":"_15CSeH6d96QbxkJpp7Wy4-","wtfpic-ct":"vlyH9szO9fXe9-Q75t6Df","item":"DgC5E9KqAJuSWdvTYTcVJ","hide":"_2DFE4Yvm2GUQB7ipG649Ai","loadmore-btn":"_5H8y_h40S8iOrJRZttuTC","team":"eXjcgnhrXfhDav4qa8NxC","team-list":"_3UhBwc61Q-VNsI03s4KYOM","contact-btn":"_1VktANLiKzEuyieLE7AjlI","client":"_3mi2DlopE5UCzAUsz6cn-N","contact":"nxwhDtWOK3aDV2Ufk0S-N","form-content":"_36EE8H6nAMspWukuU0GL0N","setInfo":"_2c7JRt6Auie5w8QULbnH8V","setMess":"_2JK2JihpFJ__fNd8xDoDFd","small":"_11JE_Hbq2fQI_gAr9t0c3R","submit":"_2aIorGUfhQVuX1A8-LG-7r","copyright":"XBN37y9IWmJAH_KZJe3S5","quicklinks":"_4MOZLAdLwBHVGBGVQ75rx"};
+module.exports = {"iconfont":"_239UDnrkXF44owt8_ZGx22","clearfix":"_3SL9LC4SzCtYtoMNYzr7Ea","title":"_1xAtbCNXbYenv9mT_qcpR4","navbar":"_33bF_zNlkDJ3zbPIFvwLXb","nav-left":"_1FfxSe9xC5TncwE9YALlC2","logo":"_32mEjYu_oG6sWppPxg2ilb","nav-right":"_1X3EOmeFikM-95NuiUoVsw","navlist":"s9CqQ6qM23Ks6yKyDhx1f","carousel":"_38V2WZ_7T_-dP8qLjAK2Uk","img-ct":"GKqDDM9ivXs2aHBsRduDc","btn":"_1O0e3CVG0gik1qCfs8fp9z","nextbtn":"_2IPbpNHSeQ3bC3OPIcFzdj","prebtn":"_3z_o3rQZ4q06jHOq6S2Qrn","bullet":"xyfgHOka4Y1XOgtQHZean","active":"_1u4C-FgImhGDmmvU_mCgH5","intro-ct":"_1L22cloJuEAafXN7IFVXuT","intro":"_2lx8TSd6DR9xWqx-2oBb8y","intro-btn":"_1N6i8HFf9loJxAlCWB7GMW","gotop-ct":"_26O3t1CLELM_nkdK5uu78v","gotop-btn":"_2e-zhATXdBJvm3tJIronJc","service":"_3H9_LgzkJIntRv88BiPT-F","srvc-list":"_3K1KEzrioTfNeYo7vxoKl8","portfolio":"M8pNnVSjx6FDpphJLOvLF","portf-list":"_1xKbsUecZ8LbcRKDzlxHAo","imghover":"HD4cMhcHgpJzG5pGHcpjH","about":"_2NfYoYjx9Iuj3HTmS1Ouux","timeline":"_18u2hGnTqDQSeJebSTcTjh","panel":"_23p3mwkZrpt7VySyYpbK1Q","end-img":"Uci3bZ8ti8J0sPZa8s0oM","stills":"_2oxp-BJgl2U37aTbi97vtG","wrap":"_15CSeH6d96QbxkJpp7Wy4-","wtfpic-ct":"vlyH9szO9fXe9-Q75t6Df","item":"DgC5E9KqAJuSWdvTYTcVJ","hide":"_2DFE4Yvm2GUQB7ipG649Ai","loadmore-btn":"_5H8y_h40S8iOrJRZttuTC","team":"eXjcgnhrXfhDav4qa8NxC","team-list":"_3UhBwc61Q-VNsI03s4KYOM","contact-btn":"_1VktANLiKzEuyieLE7AjlI","client":"_3mi2DlopE5UCzAUsz6cn-N","contact":"nxwhDtWOK3aDV2Ufk0S-N","form-content":"_36EE8H6nAMspWukuU0GL0N","setInfo":"_2c7JRt6Auie5w8QULbnH8V","setMess":"_2JK2JihpFJ__fNd8xDoDFd","small":"_11JE_Hbq2fQI_gAr9t0c3R","submit":"_2aIorGUfhQVuX1A8-LG-7r","copyright":"XBN37y9IWmJAH_KZJe3S5","quicklinks":"_4MOZLAdLwBHVGBGVQ75rx"};
 
 /***/ }),
 /* 3 */
@@ -2437,13 +2437,13 @@ var $ = __webpack_require__(0);
 var Carousel = function () {
 
 	function _Carousel($ct) {
+		var _this = this;
 		this.$ct = $ct;
 		this.$btn = $('.carousel .btn');
 		this.$bullets = $('.carousel .bullet li');
 		this.init();
 		this.bind();
 		var autoplay;
-		var _this = this;
 
 		this.$btn.each(function (idx, $node) {
 			_this.autoStop($node);
@@ -2456,28 +2456,32 @@ var Carousel = function () {
 	_Carousel.prototype = {
 		init: function init() {
 			var $imgct = this.$imgct = this.$ct.find('.img-ct');
-			var $imgs = this.$imgs = this.$ct.find('.img-ct >li');
+			var $imgs = this.$imgs = this.$ct.find('.img-ct li');
 			var $prebtn = this.$prebtn = this.$ct.find('.prebtn');
 			var $nextbtn = this.$nextbtn = this.$ct.find('.nextbtn');
-			var $bullets = this.$bullets = this.$ct.find('.bullet >li');
+			var $bullets = this.$bullets = this.$ct.find('.bullet li');
 			var $carousel = this.$carousel = this.$ct.find('.carousel');
 			var pageIndex = this.pageIndex = 0;
 			var flag = this.flag = 0;
+			var count = 0;
+			var _this = this;
 
 			//图片是http协议的时候，不放在src属性里就没有阻止
 			$imgs.find('img').each(function (img) {
 				var viewWidth = $(window).width();
 				$(this).css({ width: viewWidth });
-				var aimg = new Image();
-				aimg.src = $(this).attr('data-src');
+				//        	// var aimg = new Image()
+				//        	// aimg.src = $(this).attr('data-src')
 
-				aimg.onload = function () {
-					count++;
-					console.log(count);
-					if (count == 3) {
-						_this.setIntv();
-					}
-				};
+				//        	// aimg.onload = function(){		         		
+				count++;
+				console.log('onloaded');
+				console.log(count);
+
+				if (count == 3) {
+					_this.setIntv();
+				}
+				//}
 			});
 
 			$imgct.append(this.$imgs.first().clone());
@@ -2491,12 +2495,9 @@ var Carousel = function () {
 		},
 		setIntv: function setIntv() {
 			var _this = this;
-			function setIntv() {
-				_this.autoplay = setInterval(function () {
-					_this.playNext(1);
-				}, 3000);
-			}
-			setIntv();
+			_this.autoplay = setInterval(function () {
+				_this.playNext(1);
+			}, 2000);
 		},
 		autoStop: function autoStop(node) {
 			var _this = this;
