@@ -2475,18 +2475,6 @@ var Carousel = function () {
 			crsImg4.src = __webpack_require__(9);
 			var viewWidth = $(window).width();
 			$imgs.css({ width: viewWidth });
-
-			//图片是http协议的时候，不放在src属性里就没有阻止
-			// $imgs.find('img').each(function(img){
-			//        var viewWidth = $(window).width()
-			//        $(this).css({width: viewWidth})
-			// //        	// var aimg = new Image()
-			// //        	// aimg.src = $(this).attr('data-src')
-
-			// //        	// aimg.onload = function(){		         		
-
-			//        	//}
-			// })
 			var i = 1;
 			var temp;
 			$imgs.each(function (li) {
@@ -2503,6 +2491,7 @@ var Carousel = function () {
 
 			$imgct.width(imgWidth * (imgCount + 2));
 			$imgct.css({ left: -imgWidth });
+
 			this.setIntv();
 		},
 		setIntv: function setIntv() {
