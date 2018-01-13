@@ -4,7 +4,8 @@ module.exports = {
 	entry:'./js/main.js',
 	output: {
 		path: path.resolve(__dirname, 'buildup'),
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: 'buildup/'
 	},
 	module: {
 		rules: [
@@ -19,7 +20,7 @@ module.exports = {
 					{
 						loader: 'url-loader',
 						options: {
-							limit: 90000,
+							limit: 50000,
 							name: 'pic/[name].[hash].[ext]'
 						}
 					}

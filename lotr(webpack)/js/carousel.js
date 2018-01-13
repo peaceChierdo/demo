@@ -31,25 +31,35 @@
 				var flag = this.flag =0
 				var count = 0
 				var _this = this
-
+				var crsImg1 = document.createElement('img')
+				var crsImg2 = document.createElement('img')
+				var crsImg3 = document.createElement('img')
+				var crsImg4 = document.createElement('img')
+				crsImg1.src = require('../pic/11.jpg')
+				crsImg2.src = require('../pic/12.jpg')
+				crsImg3.src = require('../pic/13.jpg')
+				crsImg4.src = require('../pic/14.jpg')
+				var viewWidth = $(window).width()
+				$imgs.css({width: viewWidth})
+			
 		        //图片是http协议的时候，不放在src属性里就没有阻止
-				$imgs.find('img').each(function(img){
-			        var viewWidth = $(window).width()
-			        $(this).css({width: viewWidth})
-		  //        	// var aimg = new Image()
-		  //        	// aimg.src = $(this).attr('data-src')
+				// $imgs.find('img').each(function(img){
+			 //        var viewWidth = $(window).width()
+			 //        $(this).css({width: viewWidth})
+		  // //        	// var aimg = new Image()
+		  // //        	// aimg.src = $(this).attr('data-src')
 		         	
-		  //        	// aimg.onload = function(){		         		
-		         		count++		
-		         		console.log('onloaded')
-		         		console.log(count)
-
-			         	if(count==3 ){
-			         		_this.setIntv()
-			         	}				         		         		
-		         	//}
-
-				})
+		  // //        	// aimg.onload = function(){		         		
+		         					         		         		
+		  //        	//}
+				// })
+				var i=1
+				var temp
+				$imgs.each(function(li){
+					temp=eval('crsImg'+i)
+					$(this).append(temp)
+					i++
+				})					
 				
 
 				$imgct.append(this.$imgs.first().clone())  
@@ -60,6 +70,7 @@
 
 				$imgct.width(imgWidth*(imgCount+2))
 				$imgct.css({left: -imgWidth})
+				this.setIntv()
 
 			},
 			setIntv: function(){

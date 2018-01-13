@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "buildup/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 1);
@@ -2374,8 +2374,8 @@ __webpack_require__(2);
 var $ = __webpack_require__(0);
 
 var Carousel = __webpack_require__(5);
-var GoTop = __webpack_require__(6);
-var loadMore = __webpack_require__(7);
+var GoTop = __webpack_require__(10);
+var loadMore = __webpack_require__(11);
 
 Carousel.init($('.carousel '));
 new GoTop($('.gotop-ct'));
@@ -2465,23 +2465,34 @@ var Carousel = function () {
 			var flag = this.flag = 0;
 			var count = 0;
 			var _this = this;
+			var crsImg1 = document.createElement('img');
+			var crsImg2 = document.createElement('img');
+			var crsImg3 = document.createElement('img');
+			var crsImg4 = document.createElement('img');
+			crsImg1.src = __webpack_require__(6);
+			crsImg2.src = __webpack_require__(7);
+			crsImg3.src = __webpack_require__(8);
+			crsImg4.src = __webpack_require__(9);
+			var viewWidth = $(window).width();
+			$imgs.css({ width: viewWidth });
 
 			//图片是http协议的时候，不放在src属性里就没有阻止
-			$imgs.find('img').each(function (img) {
-				var viewWidth = $(window).width();
-				$(this).css({ width: viewWidth });
-				//        	// var aimg = new Image()
-				//        	// aimg.src = $(this).attr('data-src')
+			// $imgs.find('img').each(function(img){
+			//        var viewWidth = $(window).width()
+			//        $(this).css({width: viewWidth})
+			// //        	// var aimg = new Image()
+			// //        	// aimg.src = $(this).attr('data-src')
 
-				//        	// aimg.onload = function(){		         		
-				count++;
-				console.log('onloaded');
-				console.log(count);
+			// //        	// aimg.onload = function(){		         		
 
-				if (count == 3) {
-					_this.setIntv();
-				}
-				//}
+			//        	//}
+			// })
+			var i = 1;
+			var temp;
+			$imgs.each(function (li) {
+				temp = eval('crsImg' + i);
+				$(this).append(temp);
+				i++;
 			});
 
 			$imgct.append(this.$imgs.first().clone());
@@ -2492,6 +2503,7 @@ var Carousel = function () {
 
 			$imgct.width(imgWidth * (imgCount + 2));
 			$imgct.css({ left: -imgWidth });
+			this.setIntv();
 		},
 		setIntv: function setIntv() {
 			var _this = this;
@@ -2573,6 +2585,30 @@ module.exports = Carousel;
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "pic/11.04e5c3b4c5ac4e9935db1045650f6075.jpg";
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "pic/12.f108c7344cc2c270eed3d097380fb32a.jpg";
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "pic/13.3088c9ce58ca8c0c60629a4c7b466f23.jpg";
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "pic/14.e4b5e51de0b823078caca002c88cdc96.jpg";
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
@@ -2613,7 +2649,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
