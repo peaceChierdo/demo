@@ -213,36 +213,36 @@
   var TabColorWrap = (function(){
 
     function TabColor($ct){
-    this.$ct = $ct
-    this.init()
-    this.bind()
-  }
-
-  TabColor.prototype = {
-    init: function(){
-      this.tablis = this.$ct.find('.tabs>li')
-      this.panels = this.$ct.find('.panels')
-      this.wrapWidth = this.$ct.find('.wrap').width()
-    },
-    bind: function(){
-        var _this = this
-        var index = 0
-        this.tablis.click(function(){
-          var $this = $(this)
-           $this.addClass('active').siblings().removeClass('active')
-           index = $this.index()
-           _this.panels.animate({left: -(_this.wrapWidth*index)})
-        })
-      }
-
+      this.$ct = $ct
+      this.init()
+      this.bind() 
     }
-    return {
-          init: function($ct){
-              $ct.each(function(idx, node){
-                  new TabColor($(node));
-              })
-          }
+
+    TabColor.prototype = {   
+      init: function(){
+        this.tablis = this.$ct.find('.tabs>li')
+        this.panels = this.$ct.find('.panels')
+        this.wrapWidth = this.$ct.find('.wrap').width()
+      },
+      bind: function(){
+          var _this = this
+          var index = 0
+          this.tablis.click(function(){
+            var $this = $(this)
+             $this.addClass('active').siblings().removeClass('active')
+             index = $this.index()
+             _this.panels.animate({left: -(_this.wrapWidth*index)})
+          })
+        }
       }
+
+    return {
+      init: function($ct){
+          $ct.each(function(idx, node){
+              new TabColor($(node));
+          })
+      }
+    }
 
   })()
 
