@@ -8,37 +8,27 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <link href="" rel="stylesheet">
-<<<<<<< HEAD
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-=======
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
->>>>>>> d2e18f9e4bc655ed9cf373b524bb6d8d3d875cc7
   <style>
     * {
       margin: 0;
       padding: 0;
     }
-
-
     .img-preview{
       width: 1000px;
       margin: 0 auto;
     }
-
     .img-row {
       margin-bottom: 8px;
     }
-
     .img-row:after {
       content: "";
       display: block;
       clear: both;
     }
-
     .img-box {
       float: left;
     }
-
     .img-line .img-box:first-child {
       padding-left: 0;
     }
@@ -46,16 +36,13 @@
 </head>
 
 <body>
-  <div class="img-preview">
-
-  </div>
+  <div class="img-preview"></div>
 
   <script >
     function Barrel($ct){
       this.$ct = $ct
       this.rowList = []
       this.loadImg()
-
     }
 
     Barrel.prototype = {
@@ -73,10 +60,8 @@
               width: (this.width/this.height)*200
             }
             _this.render(imgInfo)  //逐个render
-          }
-          
+          }        
         }
-
       },
 
       render: function(imgInfo){
@@ -99,11 +84,8 @@
 
           this.rowList = []
           this.rowList.push(imgInfo)
-
         }
-
       },
-
 
       layout: function(newRowHeight){
         var $rowct = $('<div class="img-row"></div>')
@@ -115,7 +97,6 @@
           $rowct.append($imgct)
         })
         this.$ct.append($rowct)
-
       },
       getImgUrls: function(num){
         //var width, height, color
@@ -126,10 +107,7 @@
           urls.push(`https://unsplash.it/${width1}/${height1}`) 
         }
         return urls
-
       }
-
-
     }
 
     var Barrel1 = new Barrel($('.img-preview'))
