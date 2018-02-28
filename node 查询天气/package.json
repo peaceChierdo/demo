@@ -1,14 +1,14 @@
 {
   "name": "weather-peacechierdo",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "this is a test\u001b[D\u001b[D\u001b[D\u001b[Dtest",
   "main": "index.js",
-  "bin":{
+  "bin": {
     "weather": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack"  
+    "start": "webpack"
   },
   "keywords": [
     "weather"
