@@ -58,15 +58,17 @@
 
 				$imgct.width(imgWidth*(imgCount+2))
 				$imgct.css({left: -imgWidth})
-				
-				this.setIntv()
 
+				setTimeout(function(){
+					_this.setIntv()
+				}, 5000)
+			
 			},
 			setIntv: function(){
 				var _this = this
 			    _this.autoplay = setInterval(function(){
 			      _this.playNext(1)
-			    }, 2000)				
+			    }, 3000)				
 			},
 			autoStop: function(node){
 			  var _this = this	

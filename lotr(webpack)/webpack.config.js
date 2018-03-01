@@ -2,6 +2,11 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
 	entry:'./js/main.js',
+    // entry: [
+    //   'webpack/hot/dev-server',
+    //   'webpack-dev-server/client?http://localhost:8080',
+    //   path.resolve(__dirname, './js/main.js')
+    // ],
 	output: {
 		path: path.resolve(__dirname, 'buildup'),
 		filename: 'bundle.js',
@@ -20,7 +25,7 @@ module.exports = {
 					{
 						loader: 'url-loader',
 						options: {
-							limit: 50000,
+							limit: 40000,
 							name: 'pic/[name].[hash].[ext]'
 						}
 					}

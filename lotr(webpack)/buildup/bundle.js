@@ -2492,13 +2492,15 @@ var Carousel = function () {
 			$imgct.width(imgWidth * (imgCount + 2));
 			$imgct.css({ left: -imgWidth });
 
-			this.setIntv();
+			setTimeout(function () {
+				_this.setIntv();
+			}, 5000);
 		},
 		setIntv: function setIntv() {
 			var _this = this;
 			_this.autoplay = setInterval(function () {
 				_this.playNext(1);
-			}, 2000);
+			}, 3000);
 		},
 		autoStop: function autoStop(node) {
 			var _this = this;
@@ -2681,21 +2683,51 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 		}
 
 		_loadmore.prototype = {
-			// var _this = this
+			start: function start() {
+				var _this = this;
+				var imgUrls = [];
+				var imgUrls = this.getImg();
+				_this.lock = 1;
+
+				$.each(imgUrls, function (idx, imgurl) {
+					var $node = _this.createNode(imgurl);
+					// console.log($node)
+					// $node.find('img').load(function(){   load(): jQuery Ajax 方法   (还有一种意思)
+					// var img = new Image()
+					// img.src = imgurl
+					$node.find('img').on('load', function () {
+						$('#wtfpic-ct').append($node);
+						console.log('来了来了');
+						_this.waterFall($node);
+					});
+					//  	img.onload = function(){
+					//  		$('#wtfpic-ct').append($node)
+					// console.log('4')
+					// _this.waterFall($node)
+					//  	}
+
+					// $('#wtfpic-ct').append($node)
+					// console.log('4')
+					// _this.waterFall($node)
+					//})
+				});
+				_this.lock = 0;
+			},
+
 			getImg: function getImg() {
 				var imgUrls = [];
 				for (var i = 0; i < 10; i++) {
-					var number = parseInt(Math.random() * 60 + 1);
+					var number = parseInt(Math.random() * 50) + 10;
 					var aurl = './pic/w' + number + '.jpg';
 					imgUrls.push(aurl);
 				}
 				return imgUrls;
 			},
 
-			createNode: function createNode(img) {
+			createNode: function createNode(imgurl) {
 				var html = '';
 				html += '<li class="item">';
-				html += '<img src="' + img + '" alt="">';
+				html += '<img src="' + imgurl + '" alt="">';
 				html += '</li>';
 				return $(html);
 			},
@@ -2713,35 +2745,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 				_this.ttHeights[minIndex] += $node.outerHeight(true);
 				$('#wtfpic-ct').height(Math.max.apply(null, _this.ttHeights));
-			},
-
-			start: function start() {
-				var _this = this;
-				var imgUrls = [];
-				var imgUrls = this.getImg();
-				_this.lock = 1;
-
-				$.each(imgUrls, function (idx, imgurl) {
-					var $node = _this.createNode(imgurl);
-					// console.log($node)
-					// $node.find('img').load(function(){   load(): jQuery Ajax 方法   (还有一种意思)
-					var img = new Image();
-					img.src = imgurl;
-
-					img.onload = function () {
-						$('#wtfpic-ct').append($node);
-						console.log('4');
-						_this.waterFall($node);
-					};
-
-					// $('#wtfpic-ct').append($node)
-					// console.log('4')
-					// _this.waterFall($node)
-					//})
-				});
-				_this.lock = 0;
 			}
-
 		};
 
 		return {
