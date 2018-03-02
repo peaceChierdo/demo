@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 555778 */
-  src: url('//at.alicdn.com/t/font_555778_tu7dyhjnei13v7vi.eot');
-  src: url('//at.alicdn.com/t/font_555778_tu7dyhjnei13v7vi.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_555778_tu7dyhjnei13v7vi.woff') format('woff'),
-  url('//at.alicdn.com/t/font_555778_tu7dyhjnei13v7vi.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_555778_tu7dyhjnei13v7vi.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_555778_kxq95xyeufnljtt9.eot');
+  src: url('//at.alicdn.com/t/font_555778_kxq95xyeufnljtt9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_555778_kxq95xyeufnljtt9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_555778_kxq95xyeufnljtt9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_555778_kxq95xyeufnljtt9.svg#iconfont') format('svg');
 }
 * {
   margin: 0;
@@ -23,12 +23,19 @@ body {
 */  font-size: 18px; 
   padding: 50px;
   box-shadow: 0 0 4px 5px rgba(0,0,0,0.2);
+  position: relative;
 }
-
+#pdf {
+  position: absolute;
+  right: 2em;
+  top: 1.5em;
+  font-size: 24px;
+  color: #222;
+}
 .intro {
   display: flex;
   margin: 20px;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 .name {
   flex: 2;
