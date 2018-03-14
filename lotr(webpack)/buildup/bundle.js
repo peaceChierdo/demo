@@ -2652,27 +2652,25 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 		function _loadmore($ct) {
 			this.$btn = $('#loadmore-btn');
 			this.$ct = $ct;
-			// var currentPage = 1
-			// var ppCount = 10
 			this.ttHeights = [];
 			this.itemWidth = $('.item').outerWidth(true);
 			this.colCounts = parseInt($('#wtfpic-ct').width() / this.itemWidth);
 			this.nodeWidth = $('.item').outerWidth(true);
 			var flag = 0;
 			this.lock = 0;
-
+			var _this = this;
 			for (var i = 0; i < this.colCounts; i++) {
 				this.ttHeights[i] = 0;
 			}
-
-			var _this = this;
-			if (flag == 0) {
-				$('.item').each(function (idx, item) {
-					_this.waterFall($(item));
-				});
-				++flag;
-			}
-
+			this.start();
+			// $('.item').each(function(idx, item){
+			// 	console.log('1')
+			// 	$(item).find('img').on('load',function(){
+			// 		console.log('第一波')
+			// 		console.log(item)
+			// 		_this.waterFall($(item))					
+			// 	})
+			// })
 			this.$btn.click(function () {
 				console.log('click');
 				if (_this.lock === 1) {
@@ -2700,16 +2698,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 						console.log('来了来了');
 						_this.waterFall($node);
 					});
-					//  	img.onload = function(){
-					//  		$('#wtfpic-ct').append($node)
-					// console.log('4')
-					// _this.waterFall($node)
-					//  	}
-
-					// $('#wtfpic-ct').append($node)
-					// console.log('4')
-					// _this.waterFall($node)
-					//})
 				});
 				_this.lock = 0;
 			},
@@ -2717,7 +2705,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 			getImg: function getImg() {
 				var imgUrls = [];
 				for (var i = 0; i < 10; i++) {
-					var number = parseInt(Math.random() * 50) + 10;
+					var number = parseInt(Math.random() * 59) + 1;
 					var aurl = './pic/w' + number + '.jpg';
 					imgUrls.push(aurl);
 				}
@@ -2747,7 +2735,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				$('#wtfpic-ct').height(Math.max.apply(null, _this.ttHeights));
 			}
 		};
-
 		return {
 			init: function init($ct) {
 				new _loadmore($ct);
