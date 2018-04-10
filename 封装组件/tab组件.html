@@ -5,147 +5,130 @@
   <title>tab组件</title>
 
   <style type="text/css">
-      .mod-tab{
-        border: 1px solid #ccc;
-        margin-top: 30px;
-        width: 391px;
-      }
-      .mod-tab *{
-        box-sizing: border-box;
-      }
-      .mod-tab ul,.mod-tab li{
+    ul,
+    li {
         margin: 0;
         padding: 0;
+    }   
+    li {
         list-style: none;
-      }
-      /* .mod-tab .tabs:after{
-        content: '';
-        height: 0;
-        display: table;
-        clear: both;
-      } */
-      .mod-tab .tabs li{
-        float: left;
-        width: 130px;
-        height: 30px;
-        line-height: 30px;
-        text-align: center;
-        border-right: 1px solid #ccc;
+    } 
+	.clearfix:after{
+	content:'';
+	display: block;
+	clear:both;
+	}
+	.mod-tab{
+		border: 1px solid #ccc;
+		margin-top: 30px;
+		width: 391px;
+	}
+	.mod-tab *{
+		box-sizing: border-box;
+	}
+	.mod-tab ul,.mod-tab li{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	/* .mod-tab .tabs:after{
+		content: '';
+		height: 0;
+		display: table;
+		clear: both;
+	} */
+	.mod-tab .tabs li{
+		float: left;
+		width: 130px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		background-color: #fff;
+		cursor: pointer;
+	}
+	.mod-tab .tabs li:last-child{
+		border-right: none;
+	}
+	.mod-tab .tabs .active{
+		background: #eee;
+	}
+	.mod-tab .wrap{
+		position: relative;
+		height: 180px;
+		overflow: hidden;
+	}
+	.mod-tab .panels{
+		position: absolute;
+		width: 1173px;
+		height: 180px;
+	}
+	.mod-tab .panels div{
+		float: left;
+		width: 391px;
+		height: 180px;
+		padding: 20px;
+	}
+	.mod-tab .panel1{
+		background-color: #8EC7B8;
+	}
+	.mod-tab .panel2{
+		background-color: #BCE5E7;
+	}
+	.mod-tab .panel3{
+		background-color: #A2EEE2;
+	}
+	.mod-tab .panel4{
+		background-color: #D6D5B7;
+	}
+	.mod-tab .panel5{
+		background-color: #D1BA74;
+	}
+	.mod-tab .panel6{
+		background-color: #E6CEAC;
+	}
+	.mod-tab .active{
+		display: block;
+	} 
+    .tab {
+        width: 600px;
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        padding: 20px 10px;
+        border-radius: 4px;
+    }    
+    .tab-header {
         border-bottom: 1px solid #ccc;
-        background-color: #fff;
-        cursor: pointer;
-      }
-      .mod-tab .tabs li:last-child{
-        border-right: none;
-      }
-      .mod-tab .tabs .active{
-        background: #eee;
-      }
-      .mod-tab .wrap{
-        position: relative;
-        height: 180px;
-        overflow: hidden;
-      }
-      .mod-tab .panels{
-        position: absolute;
-        width: 1173px;
-        height: 180px;
-      }
-      .mod-tab .panels div{
+    }    
+    .tab-header>li {
         float: left;
-        width: 391px;
-        height: 180px;
-        padding: 20px;
-      }
-      .mod-tab .panel1{
-        background-color: #8EC7B8;
-      }
-      .mod-tab .panel2{
-        background-color: #BCE5E7;
-      }
-      .mod-tab .panel3{
-        background-color: #A2EEE2;
-      }
-      .mod-tab .panel4{
-        background-color: #D6D5B7;
-      }
-      .mod-tab .panel5{
-        background-color: #D1BA74;
-      }
-      .mod-tab .panel6{
-        background-color: #E6CEAC;
-      }
-      .mod-tab .active{
+        color: brown;
+        border-top: 1px solid #fff;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+    }   
+    .tab-header .active {
+        border: 1px solid #ccc;
+        border-bottom-color: #fff;
+        border-radius: 4px 4px 0 0;
+        color: #333;
+        margin-bottom: -1px;
+    }   
+    .tab-container {
+        padding: 20px 10px;
+    }   
+    .tab-container>li {
+        display: none;
+    }    
+    .tab-container>.active {
         display: block;
-      }
-
-      .clearfix:after{
-        content:'';
-        display: block;
-        clear:both;
-      }
-
-        ul,
-        li {
-            margin: 0;
-            padding: 0;
-        }
-        
-        li {
-            list-style: none;
-        }
-        
-        .clearfix:after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-        
-        .tab {
-            width: 600px;
-            margin: 20px auto;
-            border: 1px solid #ccc;
-            padding: 20px 10px;
-            border-radius: 4px;
-        }
-        
-        .tab-header {
-            border-bottom: 1px solid #ccc;
-        }
-        
-        .tab-header>li {
-            float: left;
-            color: brown;
-            border-top: 1px solid #fff;
-            border-left: 1px solid #fff;
-            border-right: 1px solid #fff;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        
-        .tab-header .active {
-            border: 1px solid #ccc;
-            border-bottom-color: #fff;
-            border-radius: 4px 4px 0 0;
-            color: #333;
-            margin-bottom: -1px;
-        }
-        
-        .tab-container {
-            padding: 20px 10px;
-        }
-        
-        .tab-container>li {
-            display: none;
-        }
-        
-        .tab-container>.active {
-            display: block;
-        }
-        
-        .box {
-            height: 1000px;
-        }
+    }    
+    .box {
+        height: 1000px;
+    }
   </style>
 </head>
 <body>
