@@ -1,1 +1,1 @@
-![自动轮播](https://raw.githubusercontent.com/peaceChierdo/demo/master/%E8%BD%AE%E6%92%AD/picForREADME/auto-carousel.gif)
+![木桶布局](https://raw.githubusercontent.com/peaceChierdo/demo/master/%E6%9C%A8%E6%A1%B6%E5%B8%83%E5%B1%80/picForREADME/barrel.png)

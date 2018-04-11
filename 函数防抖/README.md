@@ -1,1 +1,1 @@
-![自动轮播](https://raw.githubusercontent.com/peaceChierdo/demo/master/%E8%BD%AE%E6%92%AD/picForREADME/auto-carousel.gif)
+![对于一定时间段的连续的函数调用，只让其执行一次](https://raw.githubusercontent.com/peaceChierdo/demo/master/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/picForREADME/loadmore.gif)

@@ -1,1 +1,1 @@
-![自动轮播](https://raw.githubusercontent.com/peaceChierdo/demo/master/%E8%BD%AE%E6%92%AD/picForREADME/auto-carousel.gif)
+![pikapika!](https://raw.githubusercontent.com/peaceChierdo/demo/master/pikapika/picForREADME/pikachu.png)
