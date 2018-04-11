@@ -1,1 +1,1 @@
-![自动轮播](https://raw.githubusercontent.com/peaceChierdo/demo/master/%E8%BD%AE%E6%92%AD/picForREADME/auto-carousel.gif)
+![自动轮播](https://raw.githubusercontent.com/peaceChierdo/demo/master/%E8%87%AA%E5%8A%A8%E8%BD%AE%E6%92%AD/picForREADME/auto-carousel.gif)
