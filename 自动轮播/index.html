@@ -112,7 +112,7 @@
  </div>
  <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
  <script type="text/javascript"> 
-  var $imgct = $('.img-ct')     //仔细写！
+  var $imgct = $('.img-ct')    
   var $imgs = $('.img-ct >li')
   var $prebtn = $('.prebtn')
   var $nextbtn = $('.nextbtn')
@@ -245,7 +245,7 @@
   function setIntv(){
     autoplay = setInterval(function(){
       playNext(1)
-    },3000)
+    }, 1500)
   } 
   $carousel.mouseout(function(){
     setIntv()
