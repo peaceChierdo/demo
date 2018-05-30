@@ -2662,15 +2662,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 			for (var i = 0; i < this.colCounts; i++) {
 				this.ttHeights[i] = 0;
 			}
-			this.start();
-			// $('.item').each(function(idx, item){
-			// 	console.log('1')
+			//this.start()	
+			// $.each($('.item'), function(idx, item){
 			// 	$(item).find('img').on('load',function(){
-			// 		console.log('第一波')
-			// 		console.log(item)
+			// 		console.log('in')
 			// 		_this.waterFall($(item))					
 			// 	})
 			// })
+			$.each($('.item'), function (idx, item) {
+				console.log('in');
+				_this.waterFall($(item));
+			});
 			this.$btn.click(function () {
 				console.log('click');
 				if (_this.lock === 1) {
