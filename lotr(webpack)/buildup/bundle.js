@@ -2663,15 +2663,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				this.ttHeights[i] = 0;
 			}
 			//this.start()	
-			$.each($('.item'), function (idx, item) {
-				$(item).find('img').on('load', function () {
-					console.log('in');
+			// $.each($('.item'), function(idx, item){
+			// 	$(item).find('img').on('load',function(){
+			// 		console.log('in')
+			// 		_this.waterFall($(item))					
+			// 	})
+			// })
+			setTimeout(function () {
+				$.each($('.item'), function (idx, item) {
+					console.log('1');
 					_this.waterFall($(item));
 				});
-			});
-
+			}, 3000);
 			// $.each($('.item'), function(idx, item){
-			// 		console.log('in')
+			// 		console.log('1')
 			// 		_this.waterFall($(item))					
 			// })		
 			this.$btn.click(function () {
