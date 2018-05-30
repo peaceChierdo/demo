@@ -24,8 +24,9 @@ define(['./jquery-3.2.1.min'],function($){
 			setTimeout(function(){
 				$.each($('.item'), function(idx, item){
 					console.log('1')
-					_this.waterFall($(item))					
-				})				
+					_this.waterFall($(item))
+					$(item).addClass('showup')					
+				})								
 			}, 3000)
 			// $.each($('.item'), function(idx, item){
 			// 		console.log('1')
