@@ -16,7 +16,10 @@
 			})
 			this.$bullets.each(function(idx, $node){
 			  	_this.autoStop($node)
-			})			
+			})	
+			setTimeout(function(){
+				_this.$ct.addClass('showup')
+			}, 2000)		
 		}
 
 		_Carousel.prototype = {
