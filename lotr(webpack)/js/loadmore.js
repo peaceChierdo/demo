@@ -15,16 +15,17 @@ define(['./jquery-3.2.1.min'],function($){
 				this.ttHeights[i] = 0 
 			}
 			//this.start()	
-			// $.each($('.item'), function(idx, item){
-			// 	$(item).find('img').on('load',function(){
-			// 		console.log('in')
-			// 		_this.waterFall($(item))					
-			// 	})
-			// })
 			$.each($('.item'), function(idx, item){
+				$(item).find('img').on('load',function(){
 					console.log('in')
 					_this.waterFall($(item))					
-			})		
+				})
+			})
+			
+			// $.each($('.item'), function(idx, item){
+			// 		console.log('in')
+			// 		_this.waterFall($(item))					
+			// })		
 			this.$btn.click(function(){
 				console.log('click')  
 				if(_this.lock === 1){ return } 	
