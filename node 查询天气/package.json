@@ -16,7 +16,7 @@
   "author": "peaceChierdo",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^3.6.0"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "axios": "^0.16.2"
